@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function App() {
+function Bmi() {
   const [weight, setWeight] = useState<number>(0);
   const [height, setHeight] = useState<number>(0);
   const [bmi, setBmi] = useState<number>(0);
@@ -49,4 +49,4 @@ function App() {
   );
 }
 
-export default App;
+export default Bmi;

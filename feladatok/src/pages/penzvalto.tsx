@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function App() {
+function Penzvalto() {
   const [huf, setHuf] = useState<number>(0);
   const [type, setType] = useState<string>("Euro");
   const [result, setResult] = useState<string>("");
@@ -35,4 +35,4 @@ function App() {
   );
 }
 
-export default App;
+export default Penzvalto;

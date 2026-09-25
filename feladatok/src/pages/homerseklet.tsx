@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function App() {
+function Homerseklet() {
   const [celsius, setCelsius] = useState<number>(0);
   const [fahrenheit, setFahrenheit] = useState<number>(0);
   const [kelvin, setKelvin] = useState<number>(0);
@@ -37,4 +37,4 @@ function App() {
   );
 }
 
-export default App;
+export default Homerseklet;
