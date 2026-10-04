@@ -11,11 +11,11 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/szamologep" element={<Szamologep />}></Route>
-        <Route path="/bmi" element={<Bmi />}></Route>
-        <Route path="/penzvalto" element={<Penzvalto />}></Route>
-        <Route path="/homerseklet" element={<Homerseklet />}></Route>
-        <Route path="*" element={<h1>404 - Page not found!</h1>}></Route>
+        <Route path="/szamologep" element={<Szamologep />} />
+        <Route path="/bmi" element={<Bmi />} />
+        <Route path="/penzvalto" element={<Penzvalto />} />
+        <Route path="/homerseklet" element={<Homerseklet />} />
+        <Route path="*" element={<h1>404 - Page not found!</h1>} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
