@@ -1,31 +1,66 @@
-import { Button, Card } from "react-bootstrap"
-import type { Car } from "./types/Cars"
+import { Button, Card, Col, Row } from "react-bootstrap";
+import type { Car } from "./types/Car";
+import { useState } from "react";
+import { initCars } from "./Cars";
 
-function App() {
-  const cars: Array<Car> = [
-    { brand: "Mercedes", model: "Vito", year: 2015, img: "https://upload.wikimedia.org/wikipedia/commons/5/54/Mercedes-Benz_V_250_d_Exclusive_AMG_Line_Lang_%28V_447%29_%E2%80%93_Frontansicht%2C_29._Juni_2016%2C_D%C3%BCsseldorf.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original" },
-    { brand: "BMW", model: "M3", year: 2025, img: "https://hips.hearstapps.com/hmg-prod/images/2025-bmw-m3-111-66562de0157ab.jpg?crop=0.827xw:0.622xh;0.163xw,0.254xh&resize=2048:*" },
-    { brand: "Audi", model: "Q6", year: 2018, img: "https://evadatbazis.hu/wp-content/uploads/2024/11/Audi_Q6_etron_Sportback_2024-01@2x.jpg" }
-  ]
+const App = () => {
+  const [allCar, setAllCar] = useState<Array<Car>>(initCars);
+
+  const [brand, setBrand] = useState<string>("");
+  const [model, setModel] = useState<string>("");
+  const [year, setYear] = useState<number>(0);
+  const generateCard = (p: Car) => {
+    return (
+      <Card style={{ width: "18rem" }}>
+        <Card.Img variant="top" src={p.img} />
+        <Card.Body>
+          <Card.Title>{p.brand}</Card.Title>
+          <Card.Text>{p.model}</Card.Text>
+          <Card.Footer>{p.year}</Card.Footer>
+        </Card.Body>
+      </Card>
+    );
+  };
+
+  const submit = () => {
+    const newCar: Car = {
+      brand: brand,
+      model: model,
+      year: year,
+      img: "https://c8.alamy.com/comp/2PMJYXR/outline-car-icon-simple-vector-illustration-background-graphic-2PMJYXR.jpg",
+    };
+
+    setAllCar([...allCar, newCar]);
+  };
 
   return (
     <>
-      {cars.map((car: Car) => (
-        <Card style={{ width: '18rem', marginBottom: '1rem' }}>
-          <Card.Img variant="top" src={car.img} />
-          <Card.Body>
-            <Card.Title>{car.brand} {car.model}</Card.Title>
-            <Card.Text>
-               {car.year}
-            </Card.Text>
-            <Button variant="primary" onClick={() => { window.open(car.img, '_blank') }}>
-              Nézd meg
-            </Button>
-          </Card.Body>
-        </Card>
-      ))}
+      <Row>
+        <Col>{allCar.map((p) => generateCard(p))}</Col>
+        <Col>
+          <input
+            type="text"
+            onChange={(e) => setBrand(e.target.value)}
+            placeholder="Brand"
+          />
+          <br />
+          <input
+            type="text"
+            onChange={(e) => setModel(e.target.value)}
+            placeholder="Model"
+          />
+          <br />
+          <input
+            type="number"
+            onChange={(e) => setYear(Number(e.target.value))}
+            placeholder="Év"
+          />
+          <br />
+          <Button onClick={submit}>Gomb</Button>
+        </Col>
+      </Row>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
