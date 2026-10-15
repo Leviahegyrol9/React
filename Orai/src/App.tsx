@@ -15,8 +15,12 @@ const App = () => {
         <Card.Img variant="top" src={p.img} />
         <Card.Body>
           <Card.Title>{p.brand}</Card.Title>
-          <Card.Text>{p.model}</Card.Text>
-          <Card.Footer>{p.year}</Card.Footer>
+          <Card.Text>
+            {p.model}({p.year})
+          </Card.Text>
+          <Card.Footer>
+            <button onClick={() => deleteBtn(p.id)}>Törlés</button>
+          </Card.Footer>
         </Card.Body>
       </Card>
     );
@@ -24,6 +28,7 @@ const App = () => {
 
   const submit = () => {
     const newCar: Car = {
+      id: allCar.at(-1).id + 1,
       brand: brand,
       model: model,
       year: year,
@@ -31,6 +36,10 @@ const App = () => {
     };
 
     setAllCar([...allCar, newCar]);
+  };
+
+  const deleteBtn = (id: number) => {
+    setAllCar([...allCar.filter((c) => c.id != id)]);
   };
 
   return (
