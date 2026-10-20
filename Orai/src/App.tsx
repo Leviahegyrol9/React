@@ -29,6 +29,7 @@ const App = () => {
 
   const submit = () => {
     if (!brand || !model || !year) {
+      toast.dismiss();
       toast.warning("Adja meg az össezes jellemzőt!");
       return;
     }
@@ -41,11 +42,13 @@ const App = () => {
       img: "https://c8.alamy.com/comp/2PMJYXR/outline-car-icon-simple-vector-illustration-background-graphic-2PMJYXR.jpg",
     };
     setAllCar([...allCar, newCar]);
+    toast.dismiss();
     toast.success("Sikeres hozzáadás!");
   };
 
   const deleteBtn = (id: number) => {
     setAllCar([...allCar.filter((c) => c.id != id)]);
+    toast.dismiss();
     toast.success("Sikeres törlés!");
   };
 
