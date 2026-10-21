@@ -1,6 +1,6 @@
 import { Button, Card, Col, Row } from "react-bootstrap";
 import type { Car } from "./types/Car";
-import { cache, useState } from "react";
+import { useState } from "react";
 import { initCars } from "./Cars";
 import { toast } from "react-toastify";
 
@@ -20,7 +20,9 @@ const App = () => {
             {p.model}({p.year})
           </Card.Text>
           <Card.Footer>
-            <Button onClick={() => deleteBtn(p.id)}>Törlés</Button>
+            <Button variant="danger" onClick={() => deleteBtn(p.id)}>
+              Törlés
+            </Button>
           </Card.Footer>
         </Card.Body>
       </Card>
@@ -35,12 +37,13 @@ const App = () => {
     }
 
     const newCar: Car = {
-      id: allCar.at(-1).id + 1,
+      id: allCar.length > 0 ? Math.max(...allCar.map((c) => c.id)) + 1 : 1,
       brand: brand,
       model: model,
       year: year,
       img: "https://c8.alamy.com/comp/2PMJYXR/outline-car-icon-simple-vector-illustration-background-graphic-2PMJYXR.jpg",
     };
+
     setAllCar([...allCar, newCar]);
     toast.dismiss();
     toast.success("Sikeres hozzáadás!");
