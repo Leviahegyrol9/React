@@ -1,5 +1,0 @@
-components:
-alerts
-buttons
-cards
-carousel
